@@ -319,6 +319,25 @@ SELECT AccountID,
        END AS AccountCategory
 FROM Accounts;
 
+use bankingdb;
+
+SELECT AccountID,
+       Balance,
+       RANK() OVER (ORDER BY Balance DESC) AS BalanceRank
+FROM Accounts;
+
+SELECT TransactionID,
+       Amount,
+       SUM(Amount) OVER (ORDER BY TransactionDate) AS RunningTotal
+FROM Transactions;
+
+SELECT TransactionID,
+       Amount,
+       AVG(Amount) OVER () AS AverageTransaction
+FROM Transactions;
+
+
+
 
 
 
